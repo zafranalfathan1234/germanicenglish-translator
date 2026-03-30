@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>germanicenglish Translator</title>
+<style>
+h2 { font-size: 28px; }
+textarea { font-size: 40px; }
+button { font-size: 40px; padding: 10px 15px; }
+#output { font-size: 40px; font-weight: bold; }
+</style>
+</head>
+
+<body>
+
+<h2>germanicenglish translator</h2>
+
+
+<textarea id="input" rows="6" cols="50"></textarea>
+<br><br>
+
+<button onclick="englishTothegermanicenglish()">english → germanicenglish</button>
+<button onclick="germanicenglishToenglish()">germanicenglish → english</button>
+
+<p id="output"></p>
+
+<script>
+
+const map = {
+the: "dër", be: "sïn", to: "zü", of: "vön", and: "ünd", a: "ën", in: "än", that: "dät", have: "hábën", i: "ïch", it: "ës", for: "für", not: "nïcht", on: "äuf", with: "mït", he: "ër", as: "äls", you: "düu", do: "tün", at: "än", this: "diës", but: "äbër", his: "sën", by: "dürch", from: "fönn", they: "siä", we: "wïr", say: "sägen", her: "ihr", she: "siä", or: "ödär", an: "än", will: "wërd", my: "mën", one: "ëïns", all: "äll", would: "würdä", there: "där", their: "ihrën", what: "wäs", so: "äls", up: "äüf", out: "äüs", if: "wënn", about: "übär", who: "wär", get: "bëkömmën", which: "wällch", go: "gëhn", me: "mïch", when: "wënn", make: "mächën", can: "känn", like: "mög", time: "zëït", no: "nën", just: "nühr", him: "ihn", know: "wïss", take: "nëhmën", people: "mënschen", into: "än", year: "jähr", your: "dën", good: "güt", some: "ën pär", could: "könntä", them: "siä", see: "sëhn", other: "älls", than: "äls", then: "dän", now: "jëtzt", look: "säh", only: "nühr", come: "kömmën", its: "dëss", over: "übär", think: "dënk", also: "äuch", back: "zürrück", after: "näch", use: "nützen", two: "zwëï", our: "ünsär", work: "ärbëït", first: "ärscht", well: "güt", way: "vëg", even: "sögar", new: "nëü", want: "wöllën", because: "wäïl", any: "älë", these: "diësä", give: "gëbën", day: "täg", most: "mëïst", us: "üns", is: "ïst", are: "sïnd", was: "wär", were: "wärën", been: "gwësën", being: "sëïnd", has: "hätt", had: "hätt", did: "tätt", does: "tüt", done: "tänn", shall: "söll", should: "söllte", may: "därf", might: "könntä", must: "müss", here: "hiär", where: "wö", why: "wäräm", how: "viä", again: "wïëdär", once: "ënmäl", ever: "jämäls", never: "nëïmäls", always: "ïmmär", often: "öft", sometimes: "mänchmal", usually: "gwöhnlich", rarely: "sëltän", quickly: "schnäll", slowly: "läng", happily: "fröhlïch", sadly: "träürïg", big: "gröss", small: "klën", large: "gröss", tiny: "winzïg", long: "läng", short: "kürrz", high: "höch", low: "tëïf", young: "jüng", old: "ält", early: "früh", late: "spät", bad: "schlëcht", better: "bässär", best: "bäst", worse: "schlëchtär", worst: "schlëchtëst", right: "rëcht", wrong: "färlsch", true: "währ", false: "fälsch", easy: "läïcht", hard: "schwär", fast: "schnäll", hot: "häïss", cold: "käält", warm: "wärm", cool: "kühl", strong: "stärk", weak: "schwäch", rich: "rëïch", poor: "ärm", full: "völl", empty: "lëär", open: "öffnën", close: "schlïss", start: "äntfäng", stop: "häält", begin: "äntängën", end: "äntë", live: "lëbën", die: "schtërbën", love: "lëbën", hate: "hässën", dislike: "nïcht mög", help: "hälfën", try: "vërsüchën", ask: "frägën", tell: "sägën", speak: "sprëchën", talk: "tälkën", hear: "höhrën", listen: "höhrën", watch: "bäobächtën", find: "fïndën", lose: "vërlïrën", win: "gëwïnnën", play: "spëlën", run: "läüfën", walk: "gëhën", drive: "fährën", ride: "räïtën", fly: "flïëgën", swim: "schwïmmën", jump: "sprïngën", sit: "sïtzën", stand: "schtëhën", sleep: "schläfën", wake: "äüfwächën", eat: "äszën", drink: "trïnkën", cook: "köchën", read: "läsën", write: "schrëïbën", learn: "lärnën", study: "stüdïërën", teach: "lärnën", build: "bäüën", create: "schäffën", break: "brëchën", cut: "schnäïdën", buy: "käüfën", sell: "vërkäüfën", pay: "bäzählën", cost: "köstën", spend: "äüsgäbën", save: "spärën", job: "ärbëït", money: "güld", business: "gäschäft", company: "kömöngë", office: "büttö", school: "schül", student: "schülär", teacher: "lährer", class: "klässé", room: "zïmmär", city: "städt", town: "städt", village: "dörf", country: "länd", world: "wëlt", earth: "ärdë", water: "wässär", air: "lüft", fire: "fäür", food: "äsën", bread: "brött", rice: "rëïs", meat: "flëïsch", fruit: "öbst", vegetable: "gmüsë", milk: "mïlch", sugar: "zückär", salt: "säältz", tea: "thrää", coffee: "käffää", morning: "mörgën", afternoon: "nächmïttäg", evening: "übënd", night: "nächt", today: "höütä", tomorrow: "mörgën", yesterday: "gëstörn", week: "wöchä", month: "mönätt", minute: "mïnütä", hour: "sünd", second: "sëkünd", family: "fämïlïë", father: "fätär", mother: "mütär", brother: "brütär", sister: "schwëstär", friend: "fründ", child: "kïnd", baby: "säüglïng", man: "män", woman: "frau", person: "pärson", name: "nähmä", place: "ört", home: "häymat", house: "häüs", door: "türä", window: "fënstär", table: "täfäl", chair: "stül", bed: "bätt", road: "strässä", street: "strässä", car: "äütö", bus: "büs", train: "züg", plane: "flügzëüg", ship: "schïff", phone: "täläfön", computer: "rëchnär", internet: "äntärnät", website: "wäbsïtä", program: "prögräm", game: "spïl", music: "müsïk", song: "lëïd", movie: "fïlm", book: "büch", story: "gäschlächt", picture: "bïld", photo: "älbüm", camera: "kämmärä", color: "färbä", red: "röt", blue: "blau", green: "grün", yellow: "gëlb", black: "schwärz", white: "wëïss", brown: "braun", orange: "örängä", angry: "zörnïg", afraid: "ängscht", excited: "äütgärëgt", tired: "müdä", bored: "läng weilig", busy: "bäschäftïgt", free: "frëï", ready: "börëyt", sure: "sïchär", maybe: "vïällëïcht", yes: "jä", okay: "ökäy", please: "bittä", thanks: "dänk", sorry: "äs tüt mïr lëïd", welcome: "wëllkömmën", hello: "hälö", hi: "hallo", bye: "äüf wëdärshën", goodbye: "äüf wëdärshën"
+
+};
+
+function englishTothegermanicenglish(){
+let text = document.getElementById("input").value.toLowerCase();
+let result = "";
+
+for(let char of text){
+result += map[char] || char;
+}
+
+document.getElementById("output").innerText = result;
+}
+
+function germanicenglishToenglish(){
+let reverse = {};
+for(let key in map){
+reverse[map[key]] = key;
+}
+
+let text = document.getElementById("input").value.toLowerCase();
+let result = "";
+
+for(let char of text){
+result += reverse[char] || char;
+}
+
+document.getElementById("output").innerText = result;
+}
+
+</script>
+
+</body>
+</html>
